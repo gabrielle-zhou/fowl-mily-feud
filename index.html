@@ -279,24 +279,6 @@ button.big{font-size:1.25em;padding:.6em .8em;width:100%}
 .final-scores .fs-score{font-family:var(--display);font-size:clamp(40px,6vw,120px);color:var(--gold);font-variant-numeric:tabular-nums}
 #confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 
-/* ---------- host sheet ---------- */
-#s-sheet{flex-direction:column;overflow:auto;padding:1.5em 2em;gap:1em;background:#f4f5fa;color:#2b140c}
-#s-sheet h2{font-size:clamp(24px,2.4vw,40px);color:#2b140c}
-.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:1em;flex-wrap:wrap}
-.warn{background:#ffe7a6;color:#4a3500;padding:.5em .8em;border-radius:.4em;font-weight:700}
-.sheet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1em}
-.sheet-card{background:#fff;border-radius:.5em;padding:.9em 1.1em;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.sheet-card h3{font-family:var(--body);font-weight:800;font-size:1.05em;margin-bottom:.2em}
-.sheet-card .q{margin:.2em 0 .5em;font-weight:600}
-.sheet-card ol{margin:0;padding-left:1.4em;font-variant-numeric:tabular-nums}
-.sheet-card li{display:flex;justify-content:space-between;gap:1em;border-bottom:1px dashed #d8dbe6;padding:.12em 0}
-.sheet-card li span:last-child{font-weight:800}
-.sheet-card .src{color:#5b6383;font-size:.8em;margin-top:.5em}
-#s-sheet button{background:var(--burgundy);color:#fff;box-shadow:none}
-.sheet-card ol{list-style:decimal}
-.sheet-card li{display:list-item}
-.sheet-card li .row{display:flex;justify-content:space-between;gap:1em}
-
 @media (max-width:900px){
   body{overflow:auto}
   .rules{grid-template-columns:1fr}
@@ -399,7 +381,6 @@ button.big{font-size:1.25em;padding:.6em .8em;width:100%}
     <button id="btn-demo">Demo game</button>
     <button id="btn-resume" hidden>Resume game</button>
     <button id="btn-rules">How to play</button>
-    <button id="btn-sheet">Host cheat sheet</button>
   </div>
   <p class="footnote">Every board in the full game comes from a real Family Feud survey or a published poll. The demo round is pure parody. Press <b>F</b> or use the browser's full-screen mode before projecting.</p>
 </section>
@@ -486,18 +467,10 @@ button.big{font-size:1.25em;padding:.6em .8em;width:100%}
   <div class="round-label">Final score</div>
   <h2 id="winner">We have a winner</h2>
   <div class="final-scores" id="final-scores"></div>
-  <div class="menu"><button id="final-sheet">Show all answers</button><button class="primary" id="final-home">Back to title</button></div>
+  <div class="menu"><button class="primary" id="final-home">Back to title</button></div>
 </section>
 
-<!-- HOST SHEET -->
-<section class="screen" id="s-sheet" aria-label="Host cheat sheet">
-  <div class="sheet-head">
-    <h2>Host cheat sheet</h2>
-    <div class="menu"><button id="sheet-back">Back</button></div>
-  </div>
-  <div class="warn">Don't show this on the TV. Open this page on your phone to keep the answers handy.</div>
-  <div class="sheet-grid" id="sheet-grid"></div>
-</section>
+
 
 <script>
 /* =========================================================
@@ -689,10 +662,6 @@ $("setup-go").onclick=()=>{
   S=freshState(a,b); save(); audio(); show("s-game"); buildTurkeys(); renderAll();
 };
 $("btn-resume").onclick=()=>{ setMode(false); S=load(); if(!S) return; audio(); if(S.r>=ROUNDS.length){ showFinal(); } else { show("s-game"); buildTurkeys(); renderAll(); } };
-$("btn-sheet").onclick=()=>{ setMode(false); buildSheet(); sheetReturn="s-title"; show("s-sheet"); };
-$("final-sheet").onclick=()=>{ buildSheet(); sheetReturn="s-final"; show("s-sheet"); };
-let sheetReturn="s-title";
-$("sheet-back").onclick=()=>{ if(sheetReturn==="s-title") setMode(false); refreshTitle(); show(sheetReturn); };
 $("final-home").onclick=()=>{ clearModalTimers(); modalState=null; $("round-modal").hidden=true; setMode(false); refreshTitle(); show("s-title"); };
 
 /* =========================================================
@@ -1167,12 +1136,6 @@ function showFinal(){
   $("final-scores").innerHTML=card(0)+`<div class="vs">vs</div>`+card(1);
   confettiSide = tie ? -1 : w;
   show("s-final"); SFX.bell(3); setTimeout(SFX.win,1300);
-}
-
-/* ---------- host sheet ---------- */
-function buildSheet(){
-  $("sheet-grid").innerHTML=ROUNDS.map((rd,i)=>`<div class="sheet-card"><h3>${DEMO?"Demo round":"Round "+(i+1)} · ${MULT_NAME[rd.mult]}</h3><p class="q">${esc(rd.q)}</p><ol>${
-    rd.a.map(a=>`<li><div class="row"><span>${esc(a[0])}</span><span>${a[1]}</span></div></li>`).join("")}</ol><div class="src">Source: ${esc(rd.src)}</div></div>`).join("");
 }
 
 /* ---------- confetti ---------- */

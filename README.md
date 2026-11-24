@@ -12,7 +12,7 @@ A Family Feud–style party game for Thanksgiving, made to run on a laptop hooke
 - **The host types what players say** and the game checks it, forgiving typos and different phrasings. Answers get a drumroll, then a tile flip or a big red ✕.
 - **Real Family Feud rules:** face-off, play or pass, three strikes, steal. The game works out who wins control on its own.
 - **Turkeys show what's happening:** jabbing while they play, snoozing while they wait, a robber mask for the steal, a champ belt or a knockout at the end of the round.
-- Sound effects, confetti, an Undo button, and a **host cheat sheet** with every answer and its source. Open it on your phone, not the TV.
+- Sound effects, confetti and an Undo button. No peeking: the only way to see the answers is to play.
 - One HTML file. Nothing to install, no build step.
 
 ![Demo round](docs/never.jpg)
@@ -53,7 +53,19 @@ All the questions are at the top of the `<script>` in `index.html`, in `REAL_ROU
 
 ## Where the answers come from
 
-The five main boards come from real Family Feud boards and published surveys. Each source is listed in the host cheat sheet. The demo round ("Name how long it takes a tech CEO to come back after leaving") is a parody, and its points are made up.
+The five main boards come from Family Feud boards and published surveys:
+
+1. Real Family Feud board (Steve Harvey, 2010), via FunTrivia
+2. Airtime / mmhmm survey of 1,000 U.S. workers, 2021
+3. Real Family Feud board (Steve Harvey era), via FunTrivia
+4. Profit Engine count of buzzwords on 50 startup homepages, 2025
+5. BodyLogicMD survey of 1,300+ singles, 2018
+
+The demo round ("Name how long it takes a tech CEO to come back after leaving") is a parody, and its points are made up.
+
+## Disclaimer
+
+This is a fan-made party game inspired by the TV show Family Feud. It isn't affiliated with or endorsed by Family Feud, its producers or its network. "Family Feud" is a trademark of its owner, and the name is used here only to describe the style of game.
 
 ## Credits
 
