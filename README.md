@@ -2,7 +2,7 @@
 
 A Family Feud–style party game for Thanksgiving, made to run on a laptop hooked up to a TV. Two teams ("Fowl-milies"), one host, a spoon for a buzzer, and two boxing turkeys who take it very personally.
 
-**▶ Play it:** https://gabzhou.github.io/fowl-mily-feud/
+**▶ Play it:** https://gabrielle-zhou.github.io/fowl-mily-feud/
 
 ![Title screen](docs/title.jpg)
 
